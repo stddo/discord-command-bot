@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2017",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "typings"
+  },
+  "exclude": [
+    "node_modules", "typings", "test"
+  ]
+}

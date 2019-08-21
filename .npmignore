@@ -1,0 +1,5 @@
+/npm_modules/
+/test/
+/src/
+tsconfig.json
+.idea
