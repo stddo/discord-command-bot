@@ -38,7 +38,7 @@ export default class CommandBot {
             }
 
             let cmd = this.interactiveCommands[messageReaction.message.id];
-            if(cmd && ((cmd.command.menu.onlyAuthorInteraction && cmd.author === user) || !cmd.command.menu.onlyAuthorInteraction)) {
+            if(cmd && ((cmd.command.menu.onlyAuthorInteraction && cmd.userMessage.author === user) || !cmd.command.menu.onlyAuthorInteraction)) {
                 if(cmd.command.menu.elements[messageReaction.emoji.name]) {
                     cmd.command.menu.elements[messageReaction.emoji.name].call(this, cmd, user);
                 }
@@ -54,7 +54,7 @@ export default class CommandBot {
             let commandContainer: CommandContainer;
             if(this.commands.get(command).menu) {
                 let msg = <Discord.Message>await message.channel.send(this.commands.get(command).menu.messageText);
-                commandContainer = new CommandContainer(this.commands.get(command), ar.slice(1), message.channel, message.author, msg);
+                commandContainer = new CommandContainer(this.commands.get(command), ar.slice(1), message, msg);
                 this.interactiveCommands[msg.id] = commandContainer;
 
                 for(const emoji in this.commands.get(command).menu.elements) {
@@ -69,7 +69,7 @@ export default class CommandBot {
                     }
                 }
             } else {
-                commandContainer = new CommandContainer(this.commands.get(command), ar.slice(1), message.channel, message.author);
+                commandContainer = new CommandContainer(this.commands.get(command), ar.slice(1), message);
             }
 
             this.commands.get(command).onCall.call(this, commandContainer, ...ar.slice(1));
