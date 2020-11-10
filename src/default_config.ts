@@ -3,9 +3,11 @@ import {Command} from "./CommandsObject";
 
 let default_config: BotCommandsConfig = {
     prefix: "!",
-    defaultHelp: true,
+    useDefaultHelp: true,
     noCommandMessage: "Command not found, type !help for list of commands.",
-    noCommand: function (channel) { channel.send(this.config.noCommandMessage);}
+    noCommand: function(channel) {
+        channel.send(this.config.noCommandMessage);
+    }
 };
 
 let default_help_command: Command = {

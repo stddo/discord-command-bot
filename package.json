@@ -1,6 +1,6 @@
 {
   "name": "discord-command-bot",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Wrapper for discord bot that let you create commands in easy way.",
   "main": "./dist/index.js",
   "types": "./typings/index.d.ts",
@@ -12,11 +12,8 @@
   ],
   "author": "Ju5tMyWo4d",
   "license": "ISC",
-  "scripts": {
-    "test": "npm run ./test/index.js"
-  },
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "^11.6.4"
   },
   "repository": {
     "type": "git",

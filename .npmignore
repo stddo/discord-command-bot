@@ -1,5 +1,5 @@
-/npm_modules/
-/test/
-/src/
+/npm_modules
+/example
+/src
 tsconfig.json
 .idea
