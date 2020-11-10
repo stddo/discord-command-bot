@@ -3,9 +3,11 @@ import {Command} from "./CommandsObject";
 
 let default_config: BotCommandsConfig = {
     prefix: "!",
-    defaultHelp: true,
+    useDefaultHelp: true,
     noCommandMessage: "Command not found, type !help for list of commands.",
-    noCommand: function (channel) { channel.send(this.config.noCommandMessage);}
+    noCommand: function(channel) {
+        channel.send(this.config.noCommandMessage);
+    }
 };
 
 let default_help_command: Command = {
@@ -14,7 +16,7 @@ let default_help_command: Command = {
     short: "help about commands",
     onCall: function (commandContainer, command: string) {
         if(command) {
-            commandContainer.channel.send(this.commands.get(command).description);
+            commandContainer.userMessage.channel.send(this.commands.get(command).description);
         } else {
             let s = "HELP\n";
             for(let cm in this.commands.commands) {
@@ -22,7 +24,7 @@ let default_help_command: Command = {
                     s += `**${cm}** *${this.commands.commands[cm].short}*\n`;
                 }
             }
-            commandContainer.channel.send(s);
+            commandContainer.userMessage.channel.send(s);
         }
     }
 };

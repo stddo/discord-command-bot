@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2017",
+    "target": "esnext",
     "outDir": "dist",
     "declaration": true,
     "declarationDir": "typings"
   },
   "exclude": [
-    "node_modules", "typings", "test"
+    "node_modules",
+    "typings",
+    "example"
   ]
 }
