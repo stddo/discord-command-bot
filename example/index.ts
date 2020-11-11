@@ -1,5 +1,6 @@
 import * as Discord from 'discord.js';
 import {CommandBot, CommandsObject} from 'discord-command-bot';
+import * as token from './token.json';
 
 const client = new Discord.Client();
 
@@ -20,6 +21,7 @@ client.on('ready', () => {
                     commandContainer.menuMessage.edit("Page " + commandContainer.data.counter);
                 }
             },
+            onlyAuthorInteraction: true
         },
         onCall: (commandContainer) => {
             commandContainer.data.counter = 0;
@@ -29,4 +31,4 @@ client.on('ready', () => {
     });
 });
 
-client.login('token');
+client.login(token);
