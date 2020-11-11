@@ -1,4 +1,9 @@
-/dist
-/node_modules
-/.idea
-/typings
+/dist/
+/.idea/
+/typings/
+
+node_modules/
+
+*.js
+*.js.map
+token.json

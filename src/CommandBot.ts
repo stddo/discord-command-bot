@@ -1,7 +1,7 @@
 import * as Discord from 'discord.js'
-import {default_config, default_help_command} from "./default_config";
-import CommandsObject from "./CommandsObject";
-import CommandContainer from "./CommandContainer";
+import {default_config, default_help_command} from './default_config';
+import CommandsObject from './CommandsObject';
+import CommandContainer from './CommandContainer';
 
 export type BotCommandsConfig = {
     /**
@@ -57,14 +57,18 @@ export default class CommandBot {
                 return;
             }
 
-            let cmd = this.interactiveCommands[messageReaction.message.id];
-            if(cmd && ((cmd.command.menu.onlyAuthorInteraction && cmd.userMessage.author === user) || !cmd.command.menu.onlyAuthorInteraction)) {
-                if(cmd.command.menu.elements[messageReaction.emoji.name]) {
-                    cmd.command.menu.elements[messageReaction.emoji.name].call(this, cmd, user);
+            let commandContainer = this.interactiveCommands[messageReaction.message.id];
+            if(commandContainer) {
+                if(CommandBot.isPermittedToReact(commandContainer, user) && commandContainer.command.menu.elements[messageReaction.emoji.name]) {
+                    commandContainer.command.menu.elements[messageReaction.emoji.name].call(this, commandContainer, user);
                 }
+                messageReaction.remove(user);
             }
-            messageReaction.remove(user);
         }));
+    }
+
+    private static isPermittedToReact(commandContainer: CommandContainer, author: Discord.User): boolean {
+        return (commandContainer.command.menu.onlyAuthorInteraction && commandContainer.userMessage.author === author) || !commandContainer.command.menu.onlyAuthorInteraction;
     }
 
     private async parseCommand(message: Discord.Message) {
