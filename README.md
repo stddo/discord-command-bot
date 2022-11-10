@@ -40,4 +40,3 @@ client.login('token');
 ```
 ## Links
 * [GitHub](https://github.com/Ju5tMyWo4d/discord-command-bot)
-* [NPM](https://www.npmjs.com/package/discord-command-bot)
